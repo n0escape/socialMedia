@@ -1,3 +1,6 @@
+To start web page on localhost with json server use:
+### `npm run dev`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
