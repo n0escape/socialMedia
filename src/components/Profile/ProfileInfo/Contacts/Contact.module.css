@@ -1,0 +1,7 @@
+.contactLinks img {
+	width: 30px;
+	height: 30px;
+	margin: 10px;
+	border-radius: 50%;
+	border: .5px solid white;
+}

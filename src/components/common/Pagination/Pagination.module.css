@@ -1,0 +1,20 @@
+.listPages{
+	margin: 10px;
+}
+.pageLink{
+	font-size: medium;
+	padding: 5px;
+	border: 1px solid gray
+}
+.selectedPage{
+	font-size: medium;
+	padding: 5px;
+	border: 1px solid gray;
+	font-weight: bold;
+}
+.listPages:hover {
+	cursor: pointer;
+}
+.selectedPage:hover{
+	cursor: pointer;
+}

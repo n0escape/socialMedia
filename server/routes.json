@@ -1,0 +1,4 @@
+{
+	"/profile/:userId/posts": "/posts?userId=:userId",
+	"/profile/:userId/posts/:id": "/posts/:id"
+}

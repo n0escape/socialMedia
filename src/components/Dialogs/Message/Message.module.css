@@ -1,0 +1,15 @@
+.item {
+	padding: 20px;
+	color: white;
+	position: relative;
+	margin-top: 10px;
+}
+.item:nth-child(odd) {
+	text-align: right;
+}
+.item span {
+	background-color: darkorchid;
+	border: 2px solid rgb(86, 28, 116);
+	border-radius: 10px;
+	padding: 5px;
+}

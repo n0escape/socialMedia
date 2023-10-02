@@ -1,0 +1,20 @@
+.container img {
+	width: 60px;
+}
+.loginBlock{
+	float: right;
+	padding: 15px;
+}
+.loginBlock div{
+	display: flex;
+	align-items: center;
+}
+.loginBlock a{
+	color: black;
+}
+.loginBlock img{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: .5px solid white;
+}

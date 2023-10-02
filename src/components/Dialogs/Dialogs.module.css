@@ -1,0 +1,50 @@
+.dialogs {
+	width: 100%;
+	/*height: 100%;*/
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: 2fr 10fr;
+}
+
+.chats {
+	border: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.dialogsPage {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-areas: 
+		"Messages"
+		"newMessage";
+	grid-template-rows: 9fr 1fr;
+}
+
+.messages {
+	grid-area: Messages;
+}
+
+.newMessage {
+	grid-area: newMessage;
+}
+
+.newMessage button {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	padding: 0;
+	margin: 0;
+}
+.newMessage textarea {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	border-width: 0;
+	display: flex;
+	align-items: center;
+}

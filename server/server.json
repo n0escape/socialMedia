@@ -1,0 +1,181 @@
+{
+  "userSettings": [
+    {
+      "id": 1,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 2,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 3,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 4,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 5,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 6,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 7,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 8,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 9,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 10,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    },
+    {
+      "id": 29710,
+      "components": {
+        "profile": true,
+        "dialogs": true,
+        "users": true,
+        "settings": true,
+        "music": true,
+        "news": true
+      },
+      "language": null,
+      "themeMode": "default"
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "userId": 2
+    },
+    {
+      "id": 3,
+      "userId": 3
+    },
+    {
+      "id": 29710,
+      "userId": 29710
+    }
+  ],
+  "posts": [
+    {
+      "id": "7e741cc0-3c4d-47da-8ab3-3c2c34a5e87b",
+      "message": "hey",
+      "likeCounter": 0,
+      "userId": 29710,
+      "createdAt": "2023-09-15T12:30:45Z"
+    },
+    {
+      "id": "98e85306-a607-49ec-b71c-b45423f531ea",
+      "message": "fasff",
+      "likeCounter": 0,
+      "userId": 30033,
+      "createdAt": "2023-09-18T07:55:02.038Z"
+    }
+  ]
+}

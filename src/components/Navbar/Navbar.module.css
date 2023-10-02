@@ -1,0 +1,13 @@
+.item {
+	text-align: center;
+	padding: 20px;
+}
+.item a{
+	text-decoration: none;
+	font-weight: bold;
+}
+.friends{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}

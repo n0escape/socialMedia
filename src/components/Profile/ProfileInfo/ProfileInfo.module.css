@@ -1,0 +1,35 @@
+.wallpaper {
+	display: flex;
+	justify-content: center;
+}
+.wallpaper img {
+	height: 15vw;
+	width: 90%;
+}
+.description {
+	padding: 20px;
+}
+.contactLinks img {
+	width: 30px;
+	height: 30px;
+	margin: 10px;
+	border-radius: 50%;
+	border: .5px solid white;
+}
+.existContact{
+	display: auto;
+}
+.missContact{
+	display: none;
+}
+.contactsList{
+	display: flex;
+}
+.employment{
+	display: flex;
+}
+.employment img{
+	width: 20px;
+	height: 20px;
+	margin: 0 10px;
+}
