@@ -8,6 +8,7 @@
     ],
 		"allowImportingTsExtensions": true,
     "allowJs": true,
+		"baseUrl": "./src",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -23,6 +24,11 @@
   },
   "include": [
     "src",
-		"declaration.d.ts"
-	]
+		"src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.css",
+		"typings.d.ts"
+	],
+	"plugins": [{ "name": "typescript-plugin-css-modules" }],
 }

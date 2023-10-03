@@ -5,7 +5,7 @@ import profileReducer from "./profileReducer.ts";
 import navBarReducer from "./navbarReducer.ts";
 import usersReducer from "./usersReducer.ts";
 import authReducer from "./authReducer.ts";
-// import { reducer as formReducer } from "redux-form"
+import { reducer as formReducer } from "redux-form"
 import appReducer from "./appReducer.ts";
 import settingsReducer from "./settingsReducer.ts";
 
@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
 	}),
 	navBar: navBarReducer,
 	auth: authReducer,
-	// form: formReducer,
+	form: formReducer,
 	app: appReducer,
 	settings: settingsReducer,
 });

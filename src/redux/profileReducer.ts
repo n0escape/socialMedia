@@ -1,4 +1,4 @@
-// import { stopSubmit } from "redux-form";
+import { stopSubmit } from "redux-form";
 import {profileAPI, profileJsonAPI} from "../api/api";
 import { postsType, userProfileType, photosType } from "../types/types.ts";
 import { setUserPhotoAuth } from "./authReducer.ts";
@@ -165,7 +165,7 @@ export const changeProfileData = (formData: any) => async (dispatch: any, getSta
 		dispatch(getUserProfile(userId))
 	} else {
 		dispatch(setEditMode(true))
-		// dispatch(stopSubmit("profileData", { contacts: getErrorsFromMessages(data.messages)}))
+		dispatch(stopSubmit("profileData", { contacts: getErrorsFromMessages(data.messages)}))
 	}
 }
 

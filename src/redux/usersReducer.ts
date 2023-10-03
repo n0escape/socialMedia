@@ -1,5 +1,5 @@
 import { usersAPI } from "../api/api";
-import { photosType, usersType } from "../types/types";
+import { usersType } from "../types/types";
 import { updateObjectInArray } from "../utils/helpers/objectHelpers";
 
 const FOLLOW = 'socialNetwork/users/FOLLOW',
