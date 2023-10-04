@@ -166,7 +166,6 @@ export const profileJsonAPI = {
 			userId: userId,
 			createdAt: new Date().toISOString() // Добавляем метку времени
 		} as postsType;
-		console.log(newPost)
 
 		const response = await instanseJSON.post(`/profile/${userId}/posts`, newPost);
 		return response.data;

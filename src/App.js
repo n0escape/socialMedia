@@ -6,7 +6,7 @@ import UsersСontainer from './components/Users/UsersСontainer.tsx';
 import SettingsContainer from './components/Settings/SettingsContainer';
 import News from './components/News/News';
 import Music from './components/Music/Music';
-import Login from './components/Login/Login';
+import Login from './components/Login/Login.tsx';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage'
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { compose } from 'redux';
