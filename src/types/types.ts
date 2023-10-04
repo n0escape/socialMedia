@@ -1,9 +1,13 @@
 
 export type postsType = {
-	id: number,
+	createdAt: string,
+	id: string,
+	likeCounter: number,
 	message: string,
-	likeCounter: number
+	userId: number
 }
+
+
 export type contactsType = {
 	github: string | null
 	vk: string | null
@@ -33,4 +37,18 @@ export type usersType = {
 	name: string
 	status: string,
 	photos: photosType
+}
+
+export type componentsType = {
+	profile: boolean,
+	dialogs: boolean,
+	users: boolean,
+	settings: boolean,
+	music: boolean,
+	news: boolean
+}
+export type userSettingsType = {
+	components: componentsType,
+	language: string | null,
+	themeMode: 'default' | 'black' | null
 }

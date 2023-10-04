@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form";
-import {profileAPI, authAPI, securityAPI} from "../api/api";
+import {profileAPI, authAPI, securityAPI, resultCodesEnum, resultCodeForCaptcha} from "../api/api";
 
 const SET_AUTH_DATA = 'socialNetwork/auth/SET_AUTH_DATA',
 			SET_USER_PHOTO = 'socialNetwork/auth/SET_USER_PHOTO',
@@ -42,7 +42,7 @@ type setAuthDataActionType = {
 	type: typeof SET_AUTH_DATA,
 	data: authDataType
 }
-export const setAuthData = (userId: number | null, login: string | null, email: string | null, isAuth: boolean): setAuthDataActionType => {
+export const setAuthData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): setAuthDataActionType => {
 	return ({ type: SET_AUTH_DATA, data: {userId, login, email, isAuth} })
 };
 type setUserPhotoAuthActionType = {
@@ -63,9 +63,9 @@ export const setCaptchaUrl = (url: string): setCaptchaUrlActionType => {
 //thunk creators
 export const getAuthProfileData = () => async (dispatch: any) => {
 	let authData = await authAPI.getAuthData()
-	if (authData.resultCode === 0) {
-		let {id, login, email} = authData.data;
-		dispatch (setAuthData(id, login, email, true));
+	if (authData.resultCode === resultCodesEnum.Success) {
+		let {id, email, login} = authData.data;
+		dispatch (setAuthData(id, email, login, true));
 
 		let profileData = await profileAPI.getUserProfile(id)
 		dispatch (setUserPhotoAuth(profileData.photos.small));
@@ -74,10 +74,10 @@ export const getAuthProfileData = () => async (dispatch: any) => {
 }
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string | null) => async (dispatch: any) => {
 	let data = await authAPI.login(email, password, rememberMe, captcha)
-	if (data.resultCode === 0) {
+	if (data.resultCode === resultCodesEnum.Success) {
 		dispatch(getAuthProfileData())
 	} else {
-		if (data.resultCode === 10) {
+		if (data.resultCode === resultCodeForCaptcha.CaptchaIsRequired) {
 			dispatch(getCaptchaUrl())
 		}
 		let message = data.messages.length > 0 ? data.messages[0] : "Some error"

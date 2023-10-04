@@ -1,21 +1,7 @@
+import { userSettingsType } from "types/types";
 import { userSettingsJsonAPI } from "../api/api"
 
 const INITIALIZING_USER_SETTINGS = 'INITIALIZING_USER_SETTINGS'
-
-type componentsType = {
-	profile: boolean,
-	dialogs: boolean,
-	users: boolean,
-	settings: boolean,
-	music: boolean,
-	news: boolean
-}
-
-type userSettingsType = {
-	components: componentsType,
-	language: string | null,
-	themeMode: 'default' | 'black' | null
-}
 
 let initialState = {
 	userSettings: {

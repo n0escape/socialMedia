@@ -1,5 +1,6 @@
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
+import { postsType, userProfileType, userSettingsType } from 'types/types';
 
 let instanse = axios.create({
 	withCredentials: true,
@@ -23,11 +24,11 @@ export const usersAPI = {
 		const response = await instanse.get(`users/`);
 		return response.data;
 	},
-	async unfollowUser(userId) {
+	async unfollowUser(userId: number) {
 		const response = await instanse.delete(`follow/${userId}`);
 		return response.data.resultCode;
 	},
-	async followUser(userId) {
+	async followUser(userId: number) {
 		const response = await instanse.post(`follow/${userId}`);
 		return response.data.resultCode;
 	},
@@ -37,7 +38,7 @@ export const usersAPI = {
 	},
 	getAuthData() {
 		console.warn('Obsolete method. Please use authAPI obj')
-		return authAPI.me()
+		return authAPI.getAuthData()
 	}
 }
 
@@ -46,17 +47,17 @@ export const profileAPI = {
 		const response = await instanse.get(`profile/` + currUserId);
 		return response.data;
 	},
-	async getUserStatus(currUserId){
+	async getUserStatus(currUserId: number){
 		const response = await instanse.get(`profile/status/` + currUserId)
 		return response.data;
 	},
-	async updateUserStatus(status){
+	async updateUserStatus(status: string){
 		const response = await instanse.put(`profile/status/`, {status: status})
 		return response.data;
 	},
-	async updateUserPhoto(avatar){
+	async updateUserPhoto(avatarFile: any){
 		const formData = new FormData();
-		formData.append("image", avatar)
+		formData.append("image", avatarFile)
 		const response = await instanse.put(`profile/photo/`, formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
@@ -64,19 +65,45 @@ export const profileAPI = {
 		})
 		return response.data;
 	},
-	async updateProfileData(formData){
-		const response = await instanse.put(`profile/`, formData)
+	async updateProfileData(profile: userProfileType){
+		const response = await instanse.put(`profile/`, profile)
 		return response.data;
 	}
 }
 
+export enum resultCodesEnum {
+	Success = 0,
+	Error = 1,
+}
+export enum resultCodeForCaptcha {
+	CaptchaIsRequired = 10
+}
+
+type getAuthDataResponseType = {
+	data: {
+		id: number
+		email: string
+		login: string
+	}
+	fieldsErrors: any
+	messages: Array<string>
+	resultCode: resultCodesEnum
+}
+type loginResponseType = {
+	data: {
+		userId: number
+	}
+	messages: Array<string>
+	resultCode: resultCodesEnum | resultCodeForCaptcha
+}
+
 export const authAPI = {
 	async getAuthData(){
-		const response = await instanse.get(`auth/me`);
+		const response = await instanse.get<getAuthDataResponseType>(`auth/me`);
 		return response.data;
 	},
-	async login(email, password, rememberMe = false, captcha){
-		const response = await instanse.post("auth/login", {email, password, rememberMe, captcha})
+	async login(email: string, password: string, rememberMe = false, captcha: string | null = null){
+		const response = await instanse.post<loginResponseType>("auth/login", {email, password, rememberMe, captcha})
 		return response.data
 	},
 	async logout(){
@@ -93,15 +120,15 @@ export const securityAPI = {
 }
 
 export const userSettingsJsonAPI = {
-	async getUserSettingsJSON(userId){
+	async getUserSettingsJSON(userId: number){
 		const response = await instanseJSON.get(`/userSettings/${userId}`);
 		return response.data
 	},
-	async updateUserLanguageSettingJSON(userId, language){
+	async updateUserLanguageSettingJSON(userId: number, language: string){
 		const response = await instanseJSON.patch(`/userSettings/${userId}`, {language: language});
 		return response.data
 	},
-	async updateUserComponentsSettingJSON(userId, userSettings){
+	async updateUserComponentsSettingJSON(userId: number, userSettings: userSettingsType){
 		const response = await instanseJSON.patch(`/userSettings/${userId}`, {
 			components: { ...userSettings.components }
 		});
@@ -110,13 +137,24 @@ export const userSettingsJsonAPI = {
 }
 
 export const profileJsonAPI = {
-	async getProfilePostsJSON(userId) {
+	async getProfilePostsJSON(userId: number) {
 		const response = await instanseJSON.get(`/profile/${userId}/posts`);
 		const posts = response.data;
 		
 		// Сортируем посты в порядке добавления (по метке времени создания)
 		// новый пост будет последним в массиве
-		posts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+		posts.sort((a: postsType, b: postsType) => {
+			const dateA = new Date(a.createdAt);
+			const dateB = new Date(b.createdAt);
+
+			if (dateA < dateB) {
+				return -1;
+			} else if (dateA > dateB) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
 		
 		return posts;
 	},
@@ -125,14 +163,15 @@ export const profileJsonAPI = {
 			id: uuidv4(), // Генерируем UUID для нового поста
 			message: message,
 			likeCounter: 0,
-			userId: parseInt(userId),
+			userId: userId,
 			createdAt: new Date().toISOString() // Добавляем метку времени
-		};
+		} as postsType;
+		console.log(newPost)
 
 		const response = await instanseJSON.post(`/profile/${userId}/posts`, newPost);
 		return response.data;
 	},
-	async deletePostJSON(userId, id) {
+	async deletePostJSON(userId: number, id: number) {
 		const response = await instanseJSON.delete(`/profile/${userId}/posts/${id}`);
 		return response.data;
 	}

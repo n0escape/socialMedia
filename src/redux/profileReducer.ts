@@ -3,8 +3,7 @@ import {profileAPI, profileJsonAPI} from "../api/api";
 import { postsType, userProfileType, photosType } from "../types/types.ts";
 import { setUserPhotoAuth } from "./authReducer.ts";
 
-const ADD_POST = 'socialNetwork/profile/ADD_POST',
-			SET_USER_PROFILE = 'socialNetwork/profile/SET_USER_PROFILE',
+const SET_USER_PROFILE = 'socialNetwork/profile/SET_USER_PROFILE',
 			SET_USER_STATUS = 'socialNetwork/profile/SET_USER_STATUS',
 			DELETE_POST = 'socialNetwork/profile/DELETE_POST',
 			UPDATE_USER_PHOTO = 'socialNetwork/profile/UPDATE_USER_PHOTO',
@@ -13,11 +12,7 @@ const ADD_POST = 'socialNetwork/profile/ADD_POST',
 
 
 let initialState = {
-	posts: [
-		{id: 1, message: "Post template!", likeCounter: 15},
-		{id: 2, message: "Post template!", likeCounter: 20},
-		{id: 3, message: "Post template!", likeCounter: 30}
-	] as Array<postsType>,
+	posts: [ ] as Array<postsType>,
 	userProfile: null as userProfileType | null,
 	userStatus: "" as string,
 	editMode: false as boolean
@@ -27,18 +22,6 @@ export type initialStateType = typeof initialState
 
 const profileReducer = (state = initialState, action: any): initialStateType => {
 	switch (action.type){
-		case ADD_POST: {
-			let newPost = {
-				id: Object.keys(state.posts).length + 1,
-				message: action.newPostText,
-				likeCounter: 0,
-			};
-			return {
-				...state,
-				posts: [ ...state.posts, newPost ]
-			}
-		}
-
 		case SET_USER_PROFILE: 
 			return { ...state, userProfile: action.userProfile }
 
@@ -62,13 +45,7 @@ const profileReducer = (state = initialState, action: any): initialStateType => 
 }
 
 //action creators
-type addPostActionCreatorType = {
-	type: typeof ADD_POST,
-	newPostText: string
-}
-export const addPostActionCreator = (newPostText: string): addPostActionCreatorType => {
-	return ({ type: ADD_POST, newPostText })
-};
+
 type setUserProfileType = {
 	type: typeof SET_USER_PROFILE,
 	userProfile: userProfileType
