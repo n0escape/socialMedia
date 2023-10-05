@@ -1,38 +1,30 @@
 import { getAuthProfileData } from "./authReducer.ts";
 import { getUserSettingsJSON } from "./settingsReducer.ts";
+import { BaseThunkType, InferActionTypes } from "./storeRedux.ts";
 
-const INITIALIZING_SUCCESSED = 'INITIALIZING_SUCCESSED';
-
-export type initialStateType = {
-	initialized: boolean
-};
-let initialState: initialStateType = {
+let initialState = {
 	initialized: false
 };
 
-const appReducer = (state = initialState, action: any): initialStateType => {
+const appReducer = (state = initialState, action: actionTypes): initialStateType => {
 	switch (action.type){
-		case INITIALIZING_SUCCESSED: {
+		case 'sn/app/INITIALIZING_SUCCESSED': 
 			return { ...state, initialized: true }
-		}
 		
 		default:
 			return state;
 		}
 }
 
-type initializingSuccessedActionType = {
-	type: typeof INITIALIZING_SUCCESSED
+//action creators
+export const actions = {
+	initializingSuccessed: () => ( { type: 'sn/app/INITIALIZING_SUCCESSED' } as const)
 }
 
-//action creators
-export const initializingSuccessed = (): initializingSuccessedActionType => ( { type: INITIALIZING_SUCCESSED })
-
-
 //thunk creators
-export const initializeApp = () => async (dispatch: any) => {
+export const initializeApp = ():thunkType => async (dispatch) => {
 	let userSettings
-	let authData = dispatch(getAuthProfileData()).then((response: any) => {
+	let authData = dispatch(getAuthProfileData()).then((response) => {
 		if (response.resultCode !== 1){
 			userSettings = dispatch(getUserSettingsJSON(response.data.id))
 		}
@@ -40,8 +32,11 @@ export const initializeApp = () => async (dispatch: any) => {
 	)
 	// promise.push(dispatch(getUserSettingsJSON()))
 	await Promise.all([authData, userSettings])
-	dispatch(initializingSuccessed())
+	dispatch(actions.initializingSuccessed())
 }
 
-
 export default appReducer;
+
+export type initialStateType = typeof initialState
+export type actionTypes = InferActionTypes<typeof actions>
+type thunkType = BaseThunkType<actionTypes>

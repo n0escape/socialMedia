@@ -6,11 +6,11 @@ type updateUserPhotoResponseDataType = {
 }
 
 export const profileAPI = {
-	async getUserProfile(currUserId = 2) {
+	async getUserProfile(currUserId: number = 2) {
 		const response = await instanse.get<userProfileType>(`profile/` + currUserId);
 		return response.data;
 	},
-	async getUserStatus(currUserId: number) {
+	async getUserStatus(currUserId: number | null) {
 		const response = await instanse.get<string>(`profile/status/` + currUserId);
 		return response.data;
 	},

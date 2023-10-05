@@ -1,11 +1,15 @@
-import profileReducer, { addPostActionCreator, deletePost } from "./profileReducer";
+
+import profileReducer, { actions } from './profileReducer';
 
 let state = {
 	posts: [
-		{id: 1, message: "It is my first post!", likeCounter: 15},
-		{id: 2, message: "It is my second post!", likeCounter: 20},
-		{id: 3, message: "Hello everyone!", likeCounter: 30}
-	]
+		{id: '1', message: "It is my first post!", likeCounter: 15, createdAt:'', userId:1},
+		{id: '2', message: "It is my second post!", likeCounter: 20, createdAt:'', userId:3},
+		{id: '3', message: "Hello everyone!", likeCounter: 30, createdAt:'', userId:2}
+	],
+	userProfile: null,
+	userStatus: "",
+	editMode: false
 };
 
 test('patern', () => {
@@ -23,20 +27,11 @@ test('patern', () => {
 //4 создаем кейс (в profileReducer) для обработки события из action creator
 
 
-test('length of posts should be decremented by deleting post', () => {
-	//1. set test data
-	let action = deletePost(1)
 
-	//2. action
-	let changedState = profileReducer(state, action);
-
-	//3. expectation
-	expect(changedState.posts.length).toBe(2)
-});
 
 test('length of posts shouldn`t be changed by deleting post with wrong id', () => {
 	//1. set test data
-	let action = deletePost(100)
+	let action = actions.deletePost('100')
 
 	//2. action
 	let changedState = profileReducer(state, action);

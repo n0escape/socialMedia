@@ -1,7 +1,7 @@
 import { APIResponseType } from "./api";
 import { instanse, resultCodeForCaptchaEnum, resultCodesEnum } from "./api";
 
-type getAuthDataType = {
+export type getAuthDataType = {
 	id: number
 	email: string
 	login: string

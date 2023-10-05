@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import s from './ProfileInfo.module.css';
 import usersPhoto from './../../../assets/images/users.png';
 import truePhoto from './../../../assets/images/true.png';
@@ -11,7 +11,8 @@ const ProfileInfo = ({editMode, setEditMode, changeProfileData, owner, updateUse
 	userProfile}) => {
 
 	const {
-		fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts
+		// fullName, aboutMe, lookingForAJob, lookingForAJobDescription, 
+		contacts
 	} = userProfile
 
 	let onChangePhoto = (e) => {

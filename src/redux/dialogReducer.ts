@@ -1,4 +1,4 @@
-const ADD_MESSAGE = 'socialNetwork/dialog/ADD_MESSAGE'
+import { InferActionTypes } from "./storeRedux"
 
 type chatsType = {
 	id: number,
@@ -25,11 +25,9 @@ let initialState = {
 	] as Array<messagesType>
 };
 
-export type initialStateType = typeof initialState;
-
-const dialogReducer = (state = initialState, action: any): initialStateType => {
+const dialogReducer = (state = initialState, action: actionTypes): initialStateType => {
 	switch (action.type){
-		case ADD_MESSAGE: {
+		case 'sn/dialog/ADD_MESSAGE': {
 			let newMessage = {
 				id: Object.keys(state.messages).length + 1,
 				message: action.newMessageText,
@@ -43,12 +41,12 @@ const dialogReducer = (state = initialState, action: any): initialStateType => {
 			return state;
 		}
 }
-type addMessageActionType = {
-	type: typeof ADD_MESSAGE,
-	newMessageText: string
+
+export const actions = {
+	addMessageActionCreator: (newMessageText: string) => ( { type: 'sn/dialog/ADD_MESSAGE', newMessageText } as const )
 }
-export const addMessageActionCreator = (newMessageText: string): addMessageActionType => {
-	return ({ type: ADD_MESSAGE, newMessageText })
-};
 
 export default dialogReducer;
+
+export type initialStateType = typeof initialState;
+export type actionTypes = InferActionTypes<typeof actions>

@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { setUserProfile, getUserProfile, getUserStatus, updateUserStatus, updateUserPhoto, changeProfileData, setEditMode, getProfilePostsJSON } from './../../redux/profileReducer.ts';
+import { actions } from './../../redux/profileReducer.ts';
+import { getUserProfile, getUserStatus, updateUserStatus, updateUserPhoto, changeProfileData, getProfilePostsJSON } from './../../redux/profileReducer.ts';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { withRouter } from '../../hoc/withRouter';
 
 const ProfileContainer = ({
 	getProfilePostsJSON,
-	editMode, setEditMode, updateUserPhoto,
+	editMode, updateUserPhoto,
 	authorizedUserId, getUserProfile, getUserStatus, userProfile,
 	userStatus, updateUserStatus, changeProfileData, ...props}) => {
 
@@ -18,14 +19,14 @@ const ProfileContainer = ({
 		getUserProfile(currUserId);
 		getUserStatus(currUserId);
 		getProfilePostsJSON(currUserId)
-	}, [currUserId]);
+	}, [currUserId, getUserProfile, getUserStatus, getProfilePostsJSON]);
 	
 	return (
 		<div>
 				<Profile 
 					currUserId={currUserId}
 					editMode={editMode}
-					setEditMode={setEditMode}
+					setEditMode={actions.setEditMode}
 					updateUserPhoto={updateUserPhoto} 
 					owner={!props.router.params.userId} 
 					userProfile={userProfile} 
@@ -48,6 +49,6 @@ let mapStateToProps = (state) => ({
 
 export default compose(
 	withRouter,
-	connect( mapStateToProps, { setUserProfile, getUserProfile, getUserStatus, updateUserStatus, updateUserPhoto, changeProfileData, setEditMode, getProfilePostsJSON }),
+	connect( mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus, updateUserPhoto, changeProfileData, getProfilePostsJSON }),
 	withAuthRedirect,
 )(ProfileContainer)
