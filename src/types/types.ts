@@ -33,10 +33,11 @@ export type userProfileType = {
 }
 
 export type usersType = {
-	id: number,
+	id: number
 	name: string
-	status: string,
+	status: string
 	photos: photosType
+	followed: boolean
 }
 
 export type componentsType = {

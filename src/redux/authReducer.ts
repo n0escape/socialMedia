@@ -1,5 +1,8 @@
 import { stopSubmit } from "redux-form";
-import {profileAPI, authAPI, securityAPI, resultCodesEnum, resultCodeForCaptcha} from "../api/api";
+import {resultCodesEnum, resultCodeForCaptchaEnum} from "../api/api";
+import { securityAPI } from "api/securityAPI";
+import { authAPI } from "api/authAPI";
+import { profileAPI } from "api/profileAPI";
 
 const SET_AUTH_DATA = 'socialNetwork/auth/SET_AUTH_DATA',
 			SET_USER_PHOTO = 'socialNetwork/auth/SET_USER_PHOTO',
@@ -47,9 +50,9 @@ export const setAuthData = (userId: number | null, email: string | null, login: 
 };
 type setUserPhotoAuthActionType = {
 	type: typeof SET_USER_PHOTO,
-	userPhoto: string
+	userPhoto: string | null
 }
-export const setUserPhotoAuth = (userPhoto: string): setUserPhotoAuthActionType => {
+export const setUserPhotoAuth = (userPhoto: string | null): setUserPhotoAuthActionType => {
 	return ({ type: SET_USER_PHOTO, userPhoto })
 };
 type setCaptchaUrlActionType = {
@@ -77,7 +80,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 	if (data.resultCode === resultCodesEnum.Success) {
 		dispatch(getAuthProfileData())
 	} else {
-		if (data.resultCode === resultCodeForCaptcha.CaptchaIsRequired) {
+		if (data.resultCode === resultCodeForCaptchaEnum.CaptchaIsRequired) {
 			dispatch(getCaptchaUrl())
 		}
 		let message = data.messages.length > 0 ? data.messages[0] : "Some error"

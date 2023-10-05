@@ -1,5 +1,5 @@
 import { userSettingsType } from "types/types";
-import { userSettingsJsonAPI } from "../api/api"
+import { userSettingsJsonAPI } from "api/userSettingsJsonAPI";
 
 const INITIALIZING_USER_SETTINGS = 'INITIALIZING_USER_SETTINGS'
 

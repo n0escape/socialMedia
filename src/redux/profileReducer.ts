@@ -1,5 +1,6 @@
 import { stopSubmit } from "redux-form";
-import {profileAPI, profileJsonAPI} from "../api/api";
+import { profileJsonAPI } from "api/profileJsonAPI.ts";
+import { profileAPI } from "api/profileAPI.ts";
 import { postsType, userProfileType, photosType } from "../types/types.ts";
 import { setUserPhotoAuth } from "./authReducer.ts";
 
