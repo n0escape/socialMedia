@@ -69,7 +69,7 @@ export const getUsers = (currentPage: number, pageSize: number): thunkType => as
 const followUnfollowFlow = async (
 	dispatch: dispatchType, 
 	apiMethod: any, 
-	actionCreator: (userId: number) => actionTypes, 
+	actionCreator: (userId: number) => actionTypes,  //bug with fliping button
 	userId: number
 ) => {
 	dispatch (actions.toggleIsFollowingProcess(true, userId));
