@@ -2,10 +2,19 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import Chat from "./Chat/Chat"
 import Message from "./Message/Message";
-import { AddingTextReduxForm } from "../common/FormsControls/FormsControls";
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
 import { activeLink } from "../../utils/customLinks/customLinks";
+import { initialStateType } from "redux/dialogReducer";
 
-const Dialogs = ({dialogsPage:{chats, messages}, addMessage}) => {
+export type newMessageFormValuesType = {
+	newMessageText: string
+}
+type propsType = {
+	dialogsPage: initialStateType
+	addMessage: (newMessageText: string) => void
+}
+
+const Dialogs: React.FC<propsType> = ({dialogsPage:{chats, messages}, addMessage}) => {
 
 	let chatsElem = chats.map( 
 		ch => <Chat activeLink={ activeLink } key={ch.id} id={ch.id} name={ch.name}/>);
@@ -13,7 +22,7 @@ const Dialogs = ({dialogsPage:{chats, messages}, addMessage}) => {
 	let messagesElem = messages.map( 
 		m => <Message message={m.message} key={m.id}/>);
 
-	let addNewMessage = (values) => { 
+	let addNewMessage = (values: newMessageFormValuesType) => { 
 		addMessage(values.newMessageText);
 	}
 
@@ -27,18 +36,14 @@ const Dialogs = ({dialogsPage:{chats, messages}, addMessage}) => {
 					{ messagesElem }
 				</div>
 				<div className={s.newMessage}>
-					<AddingTextReduxForm 
+					{/* <AddingTextReduxForm 
 							form="dialogsAddMessage"
 							onSubmit={addNewMessage}
 							textLength={30}
 							textButton="Send"
-							fieldProps={{
-								child: "textarea",
-								placeholder: "Type message...",
-								name: "newMessageText",
-								type: "text"
-							}}
-						/>
+							name="newMessageText"
+					/> */}
+					<AddMessageForm onSubmit={addNewMessage} />
 				</div>
 			</div>
 		</div>

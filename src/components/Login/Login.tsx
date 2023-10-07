@@ -9,11 +9,19 @@ import { compose } from "redux";
 import { Navigate } from "react-router-dom";
 import { appStateType } from "redux/storeRedux.ts";
 
+
+type loginFormValuesType = {
+	email: string, password: string, rememberMe: boolean, captcha: string | null
+}
+type loginFormValuesTypeKeys = Extract<keyof loginFormValuesType, string>
+
 type loginFormOwnProps = {
 	captchaUrl: string | null
 }
 
-const LoginForm: React.FC<InjectedFormProps<loginFormValuesType, loginFormOwnProps> & loginFormOwnProps> = ({handleSubmit, error, captchaUrl}) => {
+const LoginForm: React.FC<InjectedFormProps<loginFormValuesType, loginFormOwnProps> & loginFormOwnProps> = (
+	{handleSubmit, error, captchaUrl}
+) => {
 	return(
 		<form onSubmit={handleSubmit}>
 			{createField<loginFormValuesTypeKeys>("input", "email", [required], "Email", "text")}
@@ -44,11 +52,6 @@ type mapStateToPropsType = {
 type mapDispatchToPropsType = {
 	login: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void
 }
-
-type loginFormValuesType = {
-	email: string, password: string, rememberMe: boolean, captcha: string | null
-}
-type loginFormValuesTypeKeys = Extract<keyof loginFormValuesType, string>
 
 const Login: React.FC<loginComponentProps> = ({login, isAuth, captchaUrl}) => {
 

@@ -3,6 +3,8 @@ import s from "./FormsControls.module.css"
 import { Field, InjectedFormProps, WrappedFieldProps } from "redux-form"
 import { reduxForm } from 'redux-form';
 import { fieldValidatorType, maxLengthCreator } from "../../../utils/validators/validators";
+// import { newMessageFormValuesType, newMessageFormValuesTypeKeys } from "components/Dialogs/Dialogs";
+// import { newPostFormValuesType, newPostFormValuesTypeKeys } from "components/Profile/MyPosts/MyPosts";
 
 type FormControlPropsType = {
 	child: "input" | "select" | "textarea",
@@ -11,7 +13,6 @@ type FormControlPropsType = {
 }
 
 // ComponentType<WrappedFieldProps & P>
-
 export const FormControl: React.FC<WrappedFieldProps & FormControlPropsType> = ({input, meta, ...restProps}) => {
 	const hasError = meta.touched && meta.error
 	return(
@@ -28,8 +29,13 @@ export const FormControl: React.FC<WrappedFieldProps & FormControlPropsType> = (
 
 
 export function createField <formKeysType extends string> (
-	child: "input" | "select" | "textarea", name: formKeysType, validators?: Array<fieldValidatorType>, 
-	placeholder?: string | null, type?: string | null, text?: string | null, value?: string | null, props={}
+	child: "input" | "select" | "textarea", 
+	name: formKeysType, 
+	validators?: Array<fieldValidatorType>, 
+	placeholder?: string | null, 
+	type?: string | null, 
+	text?: string | null, 
+	value?: string | null, props={}
 ) {
 	
 	return (
@@ -37,7 +43,7 @@ export function createField <formKeysType extends string> (
 			{ text }
 			<Field
 				child={child}
-				component={FormControl}
+				component={FormControl} //error with props
 				validate={validators}
 				placeholder={placeholder}
 				name={name}
@@ -48,30 +54,26 @@ export function createField <formKeysType extends string> (
 	)
 }
 
-type ownPropsType = {
-	textLength: number
-	textButton: string
-	fieldProps:{
-		name: string
-		child: "input" | "select" | "textarea"
-		placeholder?: string
-		type?: string
-	}
-}
+// type ownPropsType = {
+// 	textLength: number
+// 	textButton: string
+// 	name: fieldTypeKey
+// }
+// type fieldType = newMessageFormValuesType | newPostFormValuesType
+// type fieldTypeKey = newMessageFormValuesTypeKeys | newPostFormValuesTypeKeys
 
-const AddingTextForm: React.FC<InjectedFormProps<{}, ownPropsType> & ownPropsType> = ({
-	handleSubmit, textLength, textButton, 
-	fieldProps:{child, placeholder, name, type}
-}) => {
-	const maxLength = maxLengthCreator(textLength)
-	return(
-		<form onSubmit={handleSubmit}>
-			{createField(child, name, [maxLength], placeholder, type)}
-			<div>
-				<button>{textButton}</button>
-			</div>
-		</form>
-	)
-}
+// const AddingTextForm: React.FC<InjectedFormProps<{}, ownPropsType> & ownPropsType> = ({
+// 	handleSubmit, textLength, textButton, name
+// }) => {
+// 	const maxLength = maxLengthCreator(textLength)
+// 	return(
+// 		<form onSubmit={handleSubmit}>
+// 			{createField("textarea", name, [maxLength], "Type message...", "text")}
+// 			<div>
+// 				<button>{textButton}</button>
+// 			</div>
+// 		</form>
+// 	)
+// }
 
-export const AddingTextReduxForm = reduxForm<{},ownPropsType>({form: "defaultFormName"})(AddingTextForm)
+// export const AddingTextReduxForm = reduxForm<{}, ownPropsType>({form: "defaultFormName"})(AddingTextForm)

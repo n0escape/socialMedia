@@ -185,18 +185,18 @@
       "createdAt": "2023-10-03T12:17:04.330Z"
     },
     {
-      "id": "34adea42-2983-4bcc-a3cf-99bef25ff56c",
-      "message": "fdfe",
+      "id": "22d49eb0-8bb5-44b3-87a8-1d694bf98828",
+      "message": "new post text",
       "likeCounter": 0,
       "userId": 29710,
-      "createdAt": "2023-10-04T12:00:09.010Z"
+      "createdAt": "2023-10-07T15:16:54.037Z"
     },
     {
-      "id": "a063d025-5557-4fbf-b98d-56f26c4279e5",
-      "message": "sff3",
+      "id": "e0a4438a-e1e3-463f-b007-12a1bc7b3d8c",
+      "message": "new post text",
       "likeCounter": 0,
       "userId": 29710,
-      "createdAt": "2023-10-04T12:03:52.427Z"
+      "createdAt": "2023-10-07T15:16:58.735Z"
     }
   ]
 }
