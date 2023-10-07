@@ -39,7 +39,7 @@ const ProfileInfo = ({editMode, setEditMode, changeProfileData, owner, updateUse
 				initialValues={userProfile}
 				/>
 				:<ProfileData 
-				onEditModeChange={()=>{setEditMode(true); console.log(editMode)}} owner={owner} 
+				onEditModeChange={()=>setEditMode(true)} owner={owner} 
 				userStatus={userStatus} updateUserStatus={updateUserStatus}
 				userProfile={userProfile}/>
 			}

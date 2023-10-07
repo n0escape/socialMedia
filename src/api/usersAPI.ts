@@ -13,11 +13,12 @@ export const usersAPI = {
 		return response.data;
 	},
 	async unfollowUser(userId: number) {
-		const response = await instanse.delete(`follow/${userId}`)
-		return response.data as Promise<APIResponseType>
+		const response = await instanse.delete<APIResponseType>(`follow/${userId}`)
+		return response.data;
+		//as Promise<APIResponseType>
 	},
 	async followUser(userId: number) {
 		const response = await instanse.post<APIResponseType>(`follow/${userId}`);
-		return response.data.resultCode;
+		return response.data;
 	},
 };
