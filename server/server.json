@@ -183,20 +183,6 @@
       "likeCounter": 0,
       "userId": 29710,
       "createdAt": "2023-10-03T12:17:04.330Z"
-    },
-    {
-      "id": "22d49eb0-8bb5-44b3-87a8-1d694bf98828",
-      "message": "new post text",
-      "likeCounter": 0,
-      "userId": 29710,
-      "createdAt": "2023-10-07T15:16:54.037Z"
-    },
-    {
-      "id": "e0a4438a-e1e3-463f-b007-12a1bc7b3d8c",
-      "message": "new post text",
-      "likeCounter": 0,
-      "userId": 29710,
-      "createdAt": "2023-10-07T15:16:58.735Z"
     }
   ]
 }
