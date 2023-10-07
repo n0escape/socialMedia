@@ -26,7 +26,7 @@ const ProfileContainer = ({
 				<Profile 
 					currUserId={currUserId}
 					editMode={editMode}
-					setEditMode={actions.setEditMode}
+					setEditMode={props.setEditMode}
 					updateUserPhoto={updateUserPhoto} 
 					owner={!props.router.params.userId} 
 					userProfile={userProfile} 
@@ -47,8 +47,10 @@ let mapStateToProps = (state) => ({
 	editMode: state.contentBar.profilePage.editMode
 })
 
+let setEditMode = actions.setEditMode
+
 export default compose(
 	withRouter,
-	connect( mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus, updateUserPhoto, changeProfileData, getProfilePostsJSON }),
+	connect( mapStateToProps, { setEditMode, getUserProfile, getUserStatus, updateUserStatus, updateUserPhoto, changeProfileData, getProfilePostsJSON }),
 	withAuthRedirect,
 )(ProfileContainer)

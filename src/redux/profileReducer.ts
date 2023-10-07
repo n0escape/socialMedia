@@ -26,8 +26,8 @@ const profileReducer = (state = initialState, action: actionTypes): initialState
 		case 'sn/profile/UPDATE_USER_PHOTO':
 			return { ...state, userProfile: {...state.userProfile, photos: action.photos} as userProfileType }
 			
-		case 'sn/profile/SET_EDIT_MODE':
-			return { ...state, editMode: action.editMode }
+		case 'sn/profile/SET_EDIT_MODE':{ console.log('+')
+			return { ...state, editMode: action.editMode }}
 
 		case 'sn/profile/SET_PROFILE_POSTS':
 			return { ...state, posts: action.posts }
@@ -42,7 +42,7 @@ export const actions = {
 	setUserStatus: (userStatus: string) => ({ type: 'sn/profile/SET_USER_STATUS', userStatus } as const),
 	deletePost: (postId: string) => ({ type: 'sn/profile/DELETE_POST', postId } as const),
 	setUserPhoto: (photos: photosType) => ({ type: 'sn/profile/UPDATE_USER_PHOTO', photos } as const),
-	setEditMode: (editMode: boolean) => ({ type: 'sn/profile/SET_EDIT_MODE', editMode } as const),
+	setEditMode: (editMode: boolean) => {console.log('we are in ' + editMode ); return({ type: 'sn/profile/SET_EDIT_MODE', editMode } as const)},
 	setProfilePosts: (posts: Array<postsType>) => ({ type: 'sn/profile/SET_PROFILE_POSTS', posts } as const)
 }
 
