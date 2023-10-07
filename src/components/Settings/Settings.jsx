@@ -26,11 +26,11 @@ const Settings = ({
 
 const UserSettingsForm = ({handleSubmit, error, ...rest}) => (
 	<form onSubmit={handleSubmit}>
-		{createField("input", null, null, "components.profile", "checkbox", "Profile")}
-		{createField("input", null, null, "components.dialogs", "checkbox", "Dialogs")}
-		{createField("input", null, null, "components.users", "checkbox", "Users")}
-		{createField("input", null, null, "components.news", "checkbox", "News")}
-		{createField("input", null, null, "components.music", "checkbox", "Music")}
+		{createField("input", "components.profile", null, null, "checkbox", "Profile")}
+		{createField("input", "components.dialogs", null, null, "checkbox", "Dialogs")}
+		{createField("input", "components.users", null, null, "checkbox", "Users")}
+		{createField("input", "components.news", null, null, "checkbox", "News")}
+		{createField("input", "components.music", null, null, "checkbox", "Music")}
 		<button>Apply Settings</button>
 	</form>
 )
