@@ -6,7 +6,7 @@ import Preloader from "../common/Preloader/Preloader.jsx";
 import { compose } from "redux";
 import { getCurrentPage, getIsFetching, getFollowingInProcess,
 	 getPageSize, getStateUsersReselect, getTotalUsersCount } from '../../redux/usersSelectors.ts';
-import { usersType } from "../../types/types.ts";
+import { userType } from "../../types/types.ts";
 import { appStateType } from "../../redux/storeRedux.ts";
 
 type mapStateToPropsType = {
@@ -14,7 +14,7 @@ type mapStateToPropsType = {
 	pageSize: number,
 	totalUsersCount: number,
 	isFetching: boolean,
-	users: Array<usersType>,
+	users: Array<userType>,
 	followingInProcess: Array<number>,
 }
 type mapDispatchToPropsType = {

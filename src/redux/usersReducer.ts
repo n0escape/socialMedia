@@ -1,11 +1,11 @@
 import { Dispatch } from "redux";
 import { usersAPI } from "api/usersAPI";
-import { usersType } from "../types/types";
+import { userType } from "../types/types";
 import { updateObjectInArray } from "../utils/helpers/objectHelpers";
 import { BaseThunkType, InferActionTypes } from "./storeRedux";
 
 let initialState = {
-	users: [ ] as Array<usersType>,
+	users: [ ] as Array<userType>,
 	pageSize: 100 as number,				//количество людей на странице
 	totalUsersCount: 20 as number,	// заглушка, на общее количество человек
 	currentPage: 1 as number,
@@ -49,7 +49,7 @@ const usersReducer = (state = initialState, action: actionTypes): initialStateTy
 export const actions = {
 	setCurrentUsersPage: (currentPage: number) => ({ type: 'sn/users/SET_CURRENT_USERS_PAGE', currentPage } as const),
 	followSuccess: (userId: number) => ({ type: 'sn/users/FOLLOW', userId } as const),
-	setUsers: (users: Array<usersType>) => ({ type: 'sn/users/SET_USERS', users } as const),
+	setUsers: (users: Array<userType>) => ({ type: 'sn/users/SET_USERS', users } as const),
 	unfollowSuccess: (userId: number) => ({ type: 'sn/users/UNFOLLOW', userId } as const),
 	setTotalUsersCount: (totalUsersCount: number) => ({ type: 'sn/users/SET_TOTAL_USERS_COUNT', totalUsersCount } as const),
 	toggleIsFetching: (isFetching: boolean) => ({ type: 'sn/users/TOGGLE_IS_FETCHING', isFetching } as const),

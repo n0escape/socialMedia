@@ -32,7 +32,7 @@ export type userProfileType = {
 	photos: photosType
 }
 
-export type usersType = {
+export type userType = {
 	id: number
 	name: string
 	status: string

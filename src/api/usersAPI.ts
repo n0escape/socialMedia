@@ -1,8 +1,8 @@
-import { usersType } from "types/types";
+import { userType } from "types/types";
 import { APIResponseType, instanse } from "./api";
 
 type getUsersType = {
-	items: Array<usersType>
+	items: Array<userType>
 	totalCount: number
 	error: string
 }

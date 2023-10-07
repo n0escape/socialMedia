@@ -1,14 +1,14 @@
 import React from "react";
 import Pagination from '../common/Pagination/Pagination.tsx'
-import User from "./User/User.jsx";
-import { usersType } from "../../types/types.ts";
+import User from "./User/User.js";
+import { userType } from "../../types/types.ts";
 
 type propsType = {
 	totalUsersCount: number,
 	pageSize: number,
 	currentPage: number,
 	onPageChanged: (pageNumber: number) => void,
-	users: Array<usersType>,
+	users: Array<userType>,
 	followingInProcess: Array<number>,
 	unfollow: (userId: number) => void,
 	follow: (userId: number) => void

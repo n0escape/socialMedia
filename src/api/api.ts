@@ -1,5 +1,5 @@
 import axios from "axios";
-import { usersType } from "types/types";
+import { userType } from "types/types";
 
 export let instanse = axios.create({
 	withCredentials: true,
@@ -23,7 +23,7 @@ export enum resultCodeForCaptchaEnum {
 }
 
 export type getItemsType = {
-	items: Array<usersType>
+	items: Array<userType>
 	totalCount: number
 	error: string | null
 }
