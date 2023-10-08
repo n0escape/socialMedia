@@ -1,10 +1,12 @@
 import React from "react"
 import s from "./FormsControls.module.css"
 import { Field, InjectedFormProps, WrappedFieldProps } from "redux-form"
-import { reduxForm } from 'redux-form';
 import { fieldValidatorType, maxLengthCreator } from "../../../utils/validators/validators";
+// import { reduxForm } from 'redux-form';
 // import { newMessageFormValuesType, newMessageFormValuesTypeKeys } from "components/Dialogs/Dialogs";
 // import { newPostFormValuesType, newPostFormValuesTypeKeys } from "components/Profile/MyPosts/MyPosts";
+
+export type getStringKeys<T> = Extract<keyof T, string>
 
 type FormControlPropsType = {
 	child: "input" | "select" | "textarea",
@@ -26,7 +28,6 @@ export const FormControl: React.FC<WrappedFieldProps & FormControlPropsType> = (
 		</div>
 	)
 }
-
 
 export function createField <formKeysType extends string> (
 	child: "input" | "select" | "textarea", 

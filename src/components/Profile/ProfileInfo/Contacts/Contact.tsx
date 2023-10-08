@@ -2,7 +2,13 @@ import React from "react";
 import s from './Contact.module.css';
 // import usersPhoto from './../../../../assets/images/socialNetworks/facebookIcon.png';
 
-const Contact = (props) => {
+type propsType = {
+	link: string
+	icon: string
+	contact: string
+}
+
+const Contact: React.FC<propsType> = (props) => {
 	return(
 		<div className={s.contactLinks}>
 			<a href={props.link}>

@@ -1,12 +1,12 @@
 import { FormAction, stopSubmit } from "redux-form";
 import { profileJsonAPI } from "api/profileJsonAPI.ts";
 import { profileAPI } from "api/profileAPI.ts";
-import { postsType, userProfileType, photosType } from "../types/types.ts";
+import { postType, userProfileType, photosType } from "../types/types.ts";
 import { actions as authActions } from "./authReducer.ts";
 import { BaseThunkType, InferActionTypes } from "./storeRedux.ts";
 
 let initialState = {
-	posts: [ ] as Array<postsType>,
+	posts: [ ] as Array<postType>,
 	userProfile: null as userProfileType | null,
 	userStatus: "" as string,
 	editMode: false as boolean
@@ -43,7 +43,7 @@ export const actions = {
 	deletePost: (postId: string) => ({ type: 'sn/profile/DELETE_POST', postId } as const),
 	setUserPhoto: (photos: photosType) => ({ type: 'sn/profile/UPDATE_USER_PHOTO', photos } as const),
 	setEditMode: (editMode: boolean) => ({ type: 'sn/profile/SET_EDIT_MODE', editMode } as const),
-	setProfilePosts: (posts: Array<postsType>) => ({ type: 'sn/profile/SET_PROFILE_POSTS', posts } as const)
+	setProfilePosts: (posts: Array<postType>) => ({ type: 'sn/profile/SET_PROFILE_POSTS', posts } as const)
 }
 
 //thunk (creator)
@@ -68,16 +68,16 @@ export const updateUserPhoto = (avatar: File): thunkTypes => async (dispatch) =>
 		dispatch(authActions.setUserPhotoAuth(data.data.photos.small))
 	}
 }
-export const getProfilePostsJSON = (currUserId: number): thunkTypes => async (dispatch) => {
+export const getProfilePostsJSON = (currUserId: number | null): thunkTypes => async (dispatch) => {
 	let postsData = await profileJsonAPI.getProfilePostsJSON(currUserId)
 	dispatch (actions.setProfilePosts(postsData))
 }
-export const addNewPostJSON = (message: string, currUserId: number): thunkTypes => async (dispatch) => {
+export const addNewPostJSON = (message: string, currUserId: number| null): thunkTypes => async (dispatch) => {
 	await profileJsonAPI.addNewPostJSON(message, currUserId)
 	dispatch (getProfilePostsJSON(currUserId))
 }
-export const deletePostJSON = (currUserId: number, postId: number): thunkTypes => async (dispatch) => {
-	await profileJsonAPI.deletePostJSON(currUserId, postId)
+export const deletePostJSON = (postId: string, currUserId: number | null): thunkTypes => async (dispatch) => {
+	await profileJsonAPI.deletePostJSON(postId, currUserId)
 	dispatch (getProfilePostsJSON(currUserId))
 }
 const getErrorsFromMessages = (messages: any) => {

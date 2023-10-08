@@ -1,6 +1,6 @@
 import React from "react";
 import Pagination from '../common/Pagination/Pagination.tsx'
-import User from "./User/User.js";
+import User from "./User/User.tsx";
 import { userType } from "../../types/types.ts";
 
 type propsType = {

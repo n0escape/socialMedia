@@ -16,7 +16,7 @@ import Preloader from './components/common/Preloader/Preloader.jsx';
 import { withRouter } from './hoc/withRouter.tsx';
 import store, { appStateType } from './redux/storeRedux.ts';
 import { withSuspense } from './hoc/withSuspense.tsx';
-import ProfileContainerWithSuspense from './components/Profile/ProfileContainer.jsx'
+import ProfileContainerWithSuspense from './components/Profile/ProfileContainer.tsx'
 
 type mapPropsType = ReturnType<typeof mapStateToProps>
 type dispatchPropsType = {

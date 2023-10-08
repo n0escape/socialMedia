@@ -1,10 +1,20 @@
 import React from "react";
 import s from './Post.module.css';
 import usersPhoto from './../../../../assets/images/users.png'
+import { userProfileType } from "types/types";
 
-const Post = ({userProfile, message, likeCounter, currUserId, currPostId, deletePost}) => {
+type propsType = {
+	userProfile: userProfileType | null
+	message: string
+	likeCounter: number
+	currUserId: number | null
+	currPostId: string
+	deletePost: (currUserId: number | null, currPostId: string) => void
+}
 
-	return(
+const Post: React.FC<propsType> = ({userProfile, message, likeCounter, currUserId, currPostId, deletePost}) => {
+
+	if (userProfile != null) return(
 		<div className={s.item}>
 			<div>
 				<button onClick={()=>{deletePost(currUserId, currPostId)}}>Delete</button>
