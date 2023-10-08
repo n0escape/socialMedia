@@ -2,7 +2,7 @@ import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainter from "./MyPosts/MyPostsContainer";
 import Preloader from '../common/Preloader/Preloader';
-import { postType, userProfileType } from "types/types";
+import { userProfileType } from "types/types";
 
 type PropsType = {
 	isOwner: boolean

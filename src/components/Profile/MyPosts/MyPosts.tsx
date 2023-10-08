@@ -2,19 +2,8 @@ import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import AddPostForm from "./AddPostForm/AddPostForm";
-import { postType, userProfileType } from "types/types";
+import { mapDispatchType, mapPropsType, ownPropsType } from "./MyPostsContainer";
 
-export type mapPropsType = {
-	posts: Array<postType>
-	userProfile: userProfileType | null
-}
-export type mapDispatchType = {
-	deletePostJSON: (postId: string, currUserId: number | null) => void
-	addNewPostJSON: (newPostText: string, currUserId: number | null) => void
-}
-export type ownPropsType = {
-	currUserId: number | null
-}
 export type addPostFormValuesType = {
 	newPostText: string
 }
