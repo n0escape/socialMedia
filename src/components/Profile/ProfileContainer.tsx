@@ -8,15 +8,16 @@ import { compose } from 'redux';
 import { withRouter } from '../../hoc/withRouter.tsx';
 import { Location, NavigateFunction, RouteProps } from 'react-router-dom';
 import { appStateType } from 'redux/storeRedux.ts';
+import { userProfileType } from 'types/types.ts';
 
 type mapPropsType = ReturnType<typeof mapStateToProps>
 type mapDispatch = {
 	setEditMode: (editMode: boolean) => void,
 	getUserProfile: (currUserId: number| null) => void
 	getUserStatus: (currUserId: number| null) => void
-	updateUserStatus: () => void
-	updateUserPhoto: () => void
-	changeProfileData: () => void
+	updateUserStatus: (status: string) => void
+	updateUserPhoto: (file: File) => void
+	changeProfileData: (userProfile: userProfileType) => void
 	getProfilePostsJSON: (currUserId: number| null) => void
 }
 type withRouterProps = {

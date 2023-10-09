@@ -23,5 +23,8 @@ export type ownPropsType = {
 }
 
 
-export default connect<mapPropsType, mapDispatchType, ownPropsType, appStateType>(mapStateToProps, {addNewPostJSON, deletePostJSON})(MyPosts);
+export default connect<mapPropsType, mapDispatchType, ownPropsType, appStateType>(
+	mapStateToProps,
+	{addNewPostJSON, deletePostJSON}
+)(MyPosts);
 

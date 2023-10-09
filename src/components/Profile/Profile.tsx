@@ -9,7 +9,7 @@ type PropsType = {
 	currUserId: number | null
 	editMode: boolean
 	setEditMode: (editMode: boolean) => void
-	changeProfileData: () => void
+	changeProfileData: (userProfile: userProfileType) => void
 	updateUserPhoto: (file: File) => void
 	userProfile: userProfileType | null
 	userStatus: string
