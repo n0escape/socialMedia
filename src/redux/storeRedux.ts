@@ -1,13 +1,13 @@
-import {Action, applyMiddleware, combineReducers, compose, legacy_createStore as createStore} from "redux";
-import thunkMiddleware, { ThunkAction } from "redux-thunk";
-import dialogReducer from "./dialogReducer.ts";
-import profileReducer from "./profileReducer.ts";
-import navBarReducer from "./navbarReducer.ts";
-import usersReducer from "./usersReducer.ts";
-import authReducer from "./authReducer.ts";
-import { reducer as formReducer } from "redux-form"
-import appReducer from "./appReducer.ts";
-import settingsReducer from "./settingsReducer.ts";
+import {Action, applyMiddleware, combineReducers, compose, legacy_createStore as createStore} from 'redux';
+import thunkMiddleware, { ThunkAction } from 'redux-thunk';
+import dialogReducer from './dialogReducer.ts';
+import profileReducer from './profileReducer.ts';
+import navBarReducer from './navbarReducer.ts';
+import usersReducer from './usersReducer.ts';
+import authReducer from './authReducer.ts';
+import { reducer as formReducer } from 'redux-form'
+import appReducer from './appReducer.ts';
+import settingsReducer from './settingsReducer.ts';
 
 const rootReducer = combineReducers({
 	contentBar: combineReducers({

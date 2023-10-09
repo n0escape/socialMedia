@@ -1,6 +1,6 @@
-import { userSettingsType } from "types/types";
-import { userSettingsJsonAPI } from "api/userSettingsJsonAPI";
-import { BaseThunkType, InferActionTypes } from "./storeRedux";
+import { userSettingsType } from 'types/types';
+import { userSettingsJsonAPI } from 'api/userSettingsJsonAPI';
+import { BaseThunkType, InferActionTypes } from './storeRedux';
 
 let initialState = {
 	userSettings: {
@@ -13,7 +13,7 @@ let initialState = {
 			news: true
 		},
 		language: null,
-		themeMode: "default"
+		themeMode: 'default'
 	} as userSettingsType
 };
 

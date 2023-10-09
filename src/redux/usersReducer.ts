@@ -1,8 +1,9 @@
-import { Dispatch } from "redux";
-import { usersAPI } from "api/usersAPI";
-import { userType } from "../types/types";
-import { updateObjectInArray } from "../utils/helpers/objectHelpers";
-import { BaseThunkType, InferActionTypes } from "./storeRedux";
+import { Dispatch } from 'redux';
+import { usersAPI } from 'api/usersAPI';
+import { userType } from '../types/types';
+import { updateObjectInArray } from '../utils/helpers/objectHelpers';
+import { BaseThunkType, InferActionTypes } from './storeRedux';
+import { APIResponseType } from 'api/api';
 
 let initialState = {
 	users: [ ] as Array<userType>,
@@ -18,12 +19,12 @@ const usersReducer = (state = initialState, action: actionTypes): initialStateTy
 		case 'sn/users/FOLLOW': 
 			return {
 				...state,
-				users: updateObjectInArray(state.users, action.userId, "id", {followed: true} )
+				users: updateObjectInArray(state.users, action.userId, 'id', {followed: true} )
 			}
 		case 'sn/users/UNFOLLOW': 
 			return {
 				...state,
-				users: updateObjectInArray(state.users, action.userId, "id", {followed: false} )
+				users: updateObjectInArray(state.users, action.userId, 'id', {followed: false} )
 			}
 		case 'sn/users/SET_USERS':
 			return { ...state, users: action.users }
@@ -68,7 +69,7 @@ export const getUsers = (currentPage: number, pageSize: number): thunkType => as
 
 const followUnfollowFlow = async (
 	dispatch: dispatchType, 
-	apiMethod: any, 
+	apiMethod: (userId: number) => Promise<APIResponseType>, 
 	actionCreator: (userId: number) => actionTypes,
 	userId: number
 ) => {
@@ -81,10 +82,10 @@ const followUnfollowFlow = async (
 }
 
 export const unfollow = (userId: number): thunkType => async (dispatch) => {
-	followUnfollowFlow(dispatch, usersAPI.unfollowUser.bind(usersAPI), actions.unfollowSuccess, userId)
+	await followUnfollowFlow(dispatch, usersAPI.unfollowUser.bind(usersAPI), actions.unfollowSuccess, userId)
 }
 export const follow = (userId: number): thunkType => async (dispatch) => {
-	followUnfollowFlow(dispatch, usersAPI.followUser.bind(usersAPI), actions.followSuccess, userId)
+	await followUnfollowFlow(dispatch, usersAPI.followUser.bind(usersAPI), actions.followSuccess, userId)
 }
 
 export default usersReducer;

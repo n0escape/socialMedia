@@ -1,6 +1,6 @@
 //const ACTION_TYPE = 'ACTION_TYPE';
 
-import { friendsType } from "types/types";
+import { friendsType } from 'types/types';
 
 
 let initialState = {

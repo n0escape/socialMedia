@@ -1,7 +1,7 @@
-import dialogReducer from "./dialogReducer";
-import navBarReducer from "./navbarReducer";
-import profileReducer from "./profileReducer";
-import usersReducer from "./usersReducer";
+import dialogReducer from './dialogReducer';
+import navBarReducer from './navbarReducer';
+import profileReducer from './profileReducer';
+import usersReducer from './usersReducer';
 
 let store = {
 	_state: {
@@ -16,19 +16,19 @@ let store = {
 					{id: 6, name: 'Bogdan'}
 				],
 				messages: [
-					{id: 1, message: "Hi"},
-					{id: 2, message: "Hello"},
-					{id: 3, message: "Yo"},
+					{id: 1, message: 'Hi'},
+					{id: 2, message: 'Hello'},
+					{id: 3, message: 'Yo'},
 				],
-				newMessageText: "",
+				newMessageText: '',
 			},
 			profilePage: {
 				posts: [
-					{id: 1, message: "It is my first post!", likeCounter: 15},
-					{id: 2, message: "It is my second post!", likeCounter: 20},
-					{id: 3, message: "Hello everyone!", likeCounter: 30}
+					{id: 1, message: 'It is my first post!', likeCounter: 15},
+					{id: 2, message: 'It is my second post!', likeCounter: 20},
+					{id: 3, message: 'Hello everyone!', likeCounter: 30}
 				],
-				newPostText: "",
+				newPostText: '',
 			},
 			usersPage:{
 				

@@ -1,9 +1,9 @@
-import { FormAction, stopSubmit } from "redux-form";
-import {resultCodesEnum, resultCodeForCaptchaEnum, APIResponseType} from "../api/api";
-import { securityAPI } from "api/securityAPI";
-import { authAPI, getAuthDataType } from "api/authAPI";
-import { profileAPI } from "api/profileAPI";
-import { BaseThunkType, InferActionTypes } from "./storeRedux";
+import { FormAction, stopSubmit } from 'redux-form';
+import {resultCodesEnum, resultCodeForCaptchaEnum, APIResponseType} from '../api/api';
+import { securityAPI } from 'api/securityAPI';
+import { authAPI, getAuthDataType } from 'api/authAPI';
+import { profileAPI } from 'api/profileAPI';
+import { BaseThunkType, InferActionTypes } from './storeRedux';
 
 let initialState = {
 	userId: null as number | null,
@@ -58,8 +58,8 @@ async (dispatch) => {
 		if (data.resultCode === resultCodeForCaptchaEnum.CaptchaIsRequired) {
 			dispatch(getCaptchaUrl())
 		}
-		let message = data.messages.length > 0 ? data.messages[0] : "Some error"
-		dispatch(stopSubmit("login", {_error: message}))
+		let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
+		dispatch(stopSubmit('login', {_error: message}))
 	}
 }
 export const getCaptchaUrl = (): thunkType => async (dispatch) => {

@@ -1,4 +1,4 @@
-import { InferActionTypes } from "./storeRedux"
+import { InferActionTypes } from './storeRedux'
 
 type chatsType = {
 	id: number,
@@ -19,9 +19,9 @@ let initialState = {
 		{id: 6, name: 'Bogdan'}
 	] as Array<chatsType>,
 	messages: [
-		{id: 1, message: "Hi"},
-		{id: 2, message: "Hello"},
-		{id: 3, message: "Yo"},
+		{id: 1, message: 'Hi'},
+		{id: 2, message: 'Hello'},
+		{id: 3, message: 'Yo'},
 	] as Array<messagesType>
 };
 

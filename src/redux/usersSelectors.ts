@@ -1,5 +1,5 @@
-import { createSelector } from "reselect"
-import { appStateType } from "./storeRedux"
+import { createSelector } from 'reselect'
+import { appStateType } from './storeRedux'
 
 const getStateUsers = (state: appStateType) => {
 	return state.contentBar.usersPage.users

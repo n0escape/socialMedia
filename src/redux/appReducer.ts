@@ -1,6 +1,6 @@
-import { getAuthProfileData } from "./authReducer.ts";
-import { getUserSettingsJSON } from "./settingsReducer.ts";
-import { BaseThunkType, InferActionTypes } from "./storeRedux.ts";
+import { getAuthProfileData } from './authReducer.ts';
+import { getUserSettingsJSON } from './settingsReducer.ts';
+import { BaseThunkType, InferActionTypes } from './storeRedux.ts';
 
 let initialState = {
 	initialized: false

@@ -1,14 +1,14 @@
-import { FormAction, stopSubmit } from "redux-form";
-import { profileJsonAPI } from "api/profileJsonAPI.ts";
-import { profileAPI } from "api/profileAPI.ts";
-import { postType, userProfileType, photosType } from "../types/types.ts";
-import { actions as authActions } from "./authReducer.ts";
-import { BaseThunkType, InferActionTypes } from "./storeRedux.ts";
+import { FormAction, stopSubmit } from 'redux-form';
+import { profileJsonAPI } from 'api/profileJsonAPI.ts';
+import { profileAPI } from 'api/profileAPI.ts';
+import { postType, userProfileType, photosType } from '../types/types.ts';
+import { actions as authActions } from './authReducer.ts';
+import { BaseThunkType, InferActionTypes } from './storeRedux.ts';
 
 let initialState = {
 	posts: [ ] as Array<postType>,
 	userProfile: null as userProfileType | null,
-	userStatus: "" as string,
+	userStatus: '' as string,
 	editMode: false as boolean
 };
 
@@ -82,7 +82,7 @@ export const deletePostJSON = (postId: string, currUserId: number | null): thunk
 }
 const getErrorsFromMessages = (messages: any) => {
 	let errors = Object.keys(messages).reduce((acc, key) => {
-		let errorMessage = messages[key].split("->");
+		let errorMessage = messages[key].split('->');
 		errorMessage = errorMessage[1]
 			.slice(0, errorMessage[1].length - 1)
 			.toLowerCase();
@@ -100,7 +100,7 @@ export const changeProfileData = (profile: userProfileType): thunkTypes => async
 		} else throw new Error('userId cant be null')
 	} else {
 		dispatch(actions.setEditMode(true))
-		dispatch(stopSubmit("profileData", { contacts: getErrorsFromMessages(data.messages)}))
+		dispatch(stopSubmit('profileData', { contacts: getErrorsFromMessages(data.messages)}))
 	}
 }
 
