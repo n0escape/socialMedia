@@ -3,7 +3,7 @@ import { instanseJSON } from "./api";
 
 
 export const userSettingsJsonAPI = {
-	async getUserSettingsJSON(userId: number) {
+	async getUserSettingsJSON(userId: number| null) {
 		const response = await instanseJSON.get<userSettingsType>(`/userSettings/${userId}`);
 		return response.data;
 	},

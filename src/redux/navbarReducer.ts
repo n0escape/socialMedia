@@ -1,9 +1,7 @@
 //const ACTION_TYPE = 'ACTION_TYPE';
 
-type friendsType = {
-	userId: number,
-	name: string
-}
+import { friendsType } from "types/types";
+
 
 let initialState = {
 	friends: [
@@ -14,10 +12,11 @@ let initialState = {
 	] as Array<friendsType>
 }
 
-export type initialStateType = typeof initialState
 
 const navBarReducer = (state = initialState, action: any): initialStateType => {
 	return state;
 }
 
 export default navBarReducer;
+
+export type initialStateType = typeof initialState;

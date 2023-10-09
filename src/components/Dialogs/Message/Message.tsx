@@ -1,7 +1,11 @@
 import React from "react";
 import s from "./Message.module.css";
 
-const Message = ({message}) => {
+type propsType = {
+	message: string
+}
+
+const Message: React.FC<propsType> = ({message}) => {
 	return(
 		<div className={s.item}>
 			<span>{message}</span>

@@ -1,22 +1,25 @@
 import React from 'react';
-import './App.css';
-import HeaderContainer from './components/Header/HeaderContainer.jsx';
-import NavbarContainer from './components/Navbar/NavbarContainer.jsx';
-import UsersСontainer from './components/Users/UsersСontainer.tsx';
-import SettingsContainer from './components/Settings/SettingsContainer.jsx';
-import News from './components/News/News.jsx';
-import Music from './components/Music/Music.jsx';
-import Login from './components/Login/Login.tsx';
-import NotFoundPage from './components/NotFoundPage/NotFoundPage.jsx'
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { compose } from 'redux';
-import { Provider, connect } from 'react-redux';
-import { initializeApp } from './redux/appReducer.ts'
-import Preloader from './components/common/Preloader/Preloader.jsx';
-import { withRouter } from './hoc/withRouter.tsx';
-import store, { appStateType } from './redux/storeRedux.ts';
-import { withSuspense } from './hoc/withSuspense.tsx';
+import { Provider, connect } from 'react-redux'
+
+import './App.css';
+import HeaderContainer from './components/Header/HeaderContainer.tsx'
+import NavbarContainer from './components/Navbar/NavbarContainer.tsx'
+import UsersСontainer from './components/Users/UsersСontainer.tsx'
+import SettingsContainer from './components/Settings/SettingsContainer.tsx'
+import News from './components/News/News.tsx'
+import Music from './components/Music/Music.tsx'
+import Login from './components/Login/Login.tsx'
+import NotFoundPage from './components/NotFoundPage/NotFoundPage.tsx'
+import Preloader from './components/common/Preloader/Preloader.tsx'
+
 import ProfileContainerWithSuspense from './components/Profile/ProfileContainer.tsx'
+
+import { initializeApp } from './redux/appReducer.ts'
+import store, { appStateType } from './redux/storeRedux.ts'
+import { withRouter } from './hoc/withRouter.tsx'
+import { withSuspense } from './hoc/withSuspense.tsx'
 
 type mapPropsType = ReturnType<typeof mapStateToProps>
 type dispatchPropsType = {

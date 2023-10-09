@@ -17,10 +17,10 @@ type propsType = {
 const Dialogs: React.FC<propsType> = ({dialogsPage:{chats, messages}, addMessage}) => {
 
 	let chatsElem = chats.map( 
-		ch => <Chat activeLink={ activeLink } key={ch.id} id={ch.id} name={ch.name}/>);
+		ch => <Chat key={ch.id} activeLink={ activeLink } id={ch.id} name={ch.name}/>);
 	
 	let messagesElem = messages.map( 
-		m => <Message message={m.message} key={m.id}/>);
+		m => <Message key={m.id} message={m.message}/>);
 
 	let addNewMessage = (values: newMessageFormValuesType) => { 
 		addMessage(values.newMessageText);

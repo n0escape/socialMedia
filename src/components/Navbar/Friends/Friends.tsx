@@ -1,9 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import s from './Friends.module.css';
-import { activeLink } from "../../../utils/customLinks/customLinks";
 
-const Friends = ({userId, name}) => {
+type propsType = {
+	userId: number | null
+	name: string
+	activeLink: (tempIvent: any) => any
+}
+
+const Friends: React.FC<propsType> = ({activeLink, userId, name}) => {
 
 	let path = "/profile/" + userId;
 

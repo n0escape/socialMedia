@@ -53,3 +53,9 @@ export type userSettingsType = {
 	language: string | null,
 	themeMode: 'default' | 'black' | null
 }
+
+
+export type friendsType = {
+	userId: number | null,
+	name: string
+}

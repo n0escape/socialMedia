@@ -1,7 +1,6 @@
 import { userSettingsType } from "types/types";
 import { userSettingsJsonAPI } from "api/userSettingsJsonAPI";
-
-const INITIALIZING_USER_SETTINGS = 'INITIALIZING_USER_SETTINGS'
+import { BaseThunkType, InferActionTypes } from "./storeRedux";
 
 let initialState = {
 	userSettings: {
@@ -18,11 +17,9 @@ let initialState = {
 	} as userSettingsType
 };
 
-export type initialStateType = typeof initialState;
-
-const settingsReducer = (state = initialState, action: any): initialStateType => {
+const settingsReducer = (state = initialState, action: actionTypes): initialStateType => {
 	switch(action.type){
-		case INITIALIZING_USER_SETTINGS:
+		case 'sn/settings/INITIALIZING_USER_SETTINGS':
 			return {...state, userSettings: action.userSettings}
 		
 		default: 
@@ -30,20 +27,28 @@ const settingsReducer = (state = initialState, action: any): initialStateType =>
 	}
 }
 
-export const intializingUserSettings = (userSettings: userSettingsType) => ( { type: INITIALIZING_USER_SETTINGS, userSettings })
-
-
-export const getUserSettingsJSON = (userId: number) => async (dispatch: any) => {
-	let data = await userSettingsJsonAPI.getUserSettingsJSON(userId);
-	dispatch(intializingUserSettings(data))
+export const actions = {
+	intializingUserSettings: (userSettings: userSettingsType) => 
+	( { type: 'sn/settings/INITIALIZING_USER_SETTINGS', userSettings } as const )
 }
-export const updateUserLanguageSettingJSON = (userId: number, language: string) => async (dispatch: any) => {
+
+
+export const getUserSettingsJSON = (userId: number | null): thunkTypes => async (dispatch) => {
+	let data = await userSettingsJsonAPI.getUserSettingsJSON(userId);
+	dispatch(actions.intializingUserSettings(data))
+}
+export const updateUserLanguageSettingJSON = (userId: number, language: string): thunkTypes => async (dispatch) => {
 	await userSettingsJsonAPI.updateUserLanguageSettingJSON(userId, language);
 	dispatch(getUserSettingsJSON(userId))
 }
-export const updateUserComponentsSettingJSON = (userId: number, userSettings: userSettingsType) => async (dispatch: any) => {
+export const updateUserComponentsSettingJSON = (userId: number, userSettings: userSettingsType): thunkTypes => async (dispatch) => {
 	await userSettingsJsonAPI.updateUserComponentsSettingJSON(userId, userSettings);
 	dispatch(getUserSettingsJSON(userId))
 }
 
 export default settingsReducer;
+
+
+export type initialStateType = typeof initialState;
+export type actionTypes = InferActionTypes<typeof actions>
+type thunkTypes = BaseThunkType<actionTypes>

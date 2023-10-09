@@ -2,7 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Chat.module.css";
 
-const Chat = ({id, activeLink, name}) => {
+type propsType = {
+	id: number
+	name: string
+	activeLink: (tempIvent: any) => any
+}
+
+const Chat: React.FC<propsType> = ({activeLink, id, name}) => {
 
 	let path = "/dialogs/" + id;
 
