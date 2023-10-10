@@ -4,22 +4,22 @@ import { compose } from 'redux';
 import { Provider, connect } from 'react-redux'
 
 import './App.css';
-import HeaderContainer from './components/Header/HeaderContainer.tsx'
-import NavbarContainer from './components/Navbar/NavbarContainer.tsx'
-import UsersСontainer from './components/Users/UsersСontainer.tsx'
-import SettingsContainer from './components/Settings/SettingsContainer.tsx'
-import News from './components/News/News.tsx'
-import Music from './components/Music/Music.tsx'
-import Login from './components/Login/Login.tsx'
-import NotFoundPage from './components/NotFoundPage/NotFoundPage.tsx'
-import Preloader from './components/common/Preloader/Preloader.tsx'
+import HeaderContainer from './components/Header/HeaderContainer'
+import NavbarContainer from './components/Navbar/NavbarContainer'
+import {UsersPage} from './components/Users/UsersСontainer'
+import SettingsContainer from './components/Settings/SettingsContainer'
+import News from './components/News/News'
+import Music from './components/Music/Music'
+import {Login} from './components/Login/Login'
+import NotFoundPage from './components/NotFoundPage/NotFoundPage'
+import Preloader from './components/common/Preloader/Preloader'
 
-import ProfileContainerWithSuspense from './components/Profile/ProfileContainer.tsx'
+import ProfileContainerWithSuspense from './components/Profile/ProfileContainer'
 
-import { initializeApp } from './redux/appReducer.ts'
-import store, { appStateType } from './redux/storeRedux.ts'
-import { withRouter } from './hoc/withRouter.tsx'
-import { withSuspense } from './hoc/withSuspense.tsx'
+import { initializeApp } from './redux/appReducer'
+import store, { appStateType } from './redux/storeRedux'
+import { withRouter } from './hoc/withRouter'
+import { withSuspense } from './hoc/withSuspense'
 
 type mapPropsType = ReturnType<typeof mapStateToProps>
 type dispatchPropsType = {
@@ -27,7 +27,7 @@ type dispatchPropsType = {
 }
 
 // const ProfileContainer = React.lazy( () => import ('./components/Profile/ProfileContainer') )
-const DialogsContainer = React.lazy( () => import ('./components/Dialogs/DialogsContainer.tsx') )
+const DialogsContainer = React.lazy( () => import ('./components/Dialogs/DialogsContainer') )
 // const ProfileContainerWithSuspense = withSuspense(ProfileContainer)
 const DialogsContainerWithSuspense = withSuspense(DialogsContainer)
 
@@ -46,7 +46,7 @@ class App extends React.Component<mapPropsType & dispatchPropsType>{
 	components = {
 		ProfileContainerWithSuspense,
 		DialogsContainerWithSuspense,
-		UsersСontainer,
+		UsersPage,
 		News,
 		Music,
 		SettingsContainer,
@@ -99,7 +99,7 @@ const withSettingsRoutes = (settingsComponents: any, components: any) => {
 					case 'dialogs':
 						return <Route key={key} path={key} element={<components.DialogsContainerWithSuspense />} />
 					case 'users':
-						return <Route key={key} path={key} element={<components.UsersСontainer />} />
+						return <Route key={key} path={key} element={<components.UsersPage />} />
 					case 'news':
 						return <Route key={key} path={key} element={<components.News />} />
 					case 'music':

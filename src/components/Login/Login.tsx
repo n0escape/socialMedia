@@ -1,24 +1,24 @@
 import React from "react";
-import { connect } from "react-redux";
-import { login } from '../../redux/authReducer.ts';
+import { connect, useDispatch, useSelector } from "react-redux";
+import { login } from '../../redux/authReducer';
 import { compose } from "redux";
 import { Navigate } from "react-router-dom";
-import { appStateType } from "redux/storeRedux.ts";
-import { loginFormValuesType, LoginReduxForm } from "./LoginForm/LoginForm.tsx";
+import { appDispatch, appStateType } from "redux/storeRedux";
+import { loginFormValuesType, LoginReduxForm } from "./LoginForm/LoginForm";
 
-type mapStateToPropsType = {
-	isAuth: boolean
-	captchaUrl: string | null
-}
-type mapDispatchToPropsType = {
-	login: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void
-}
-type loginComponentProps = mapStateToPropsType & mapDispatchToPropsType;
+type propsType = {
 
-const Login: React.FC<loginComponentProps> = ({login, isAuth, captchaUrl}) => {
+}
+
+export const Login: React.FC<propsType> = ({}) => {
+
+	const isAuth = useSelector((state: appStateType) => state.auth.isAuth)
+	const captchaUrl = useSelector((state: appStateType) => state.auth.captchaUrl)
+	
+	const dispatch = useDispatch<appDispatch>()
 
 	const onSubmit = (formData: loginFormValuesType) => {
-		login(formData.email, formData.password, formData.rememberMe, formData.captcha);
+		dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
 	}
 	if (isAuth) return <Navigate to={"/profile"}/>
 	return (
@@ -29,9 +29,3 @@ const Login: React.FC<loginComponentProps> = ({login, isAuth, captchaUrl}) => {
 
 	);
 }
-let mapStateToProps = (state: appStateType): mapStateToPropsType =>({
-	isAuth: state.auth.isAuth,
-	captchaUrl: state.auth.captchaUrl
-})
-
-export default compose(connect(mapStateToProps, {login}))(Login);
