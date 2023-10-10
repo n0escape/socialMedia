@@ -11,7 +11,11 @@ let initialState = {
 	totalUsersCount: 20 as number,	// заглушка, на общее количество человек
 	currentPage: 1 as number,
 	isFetching: true as boolean,
-	followingProcess: [ ] as Array<number> //массив users ids
+	followingProcess: [ ] as Array<number>, //массив users ids
+	filter: {
+		term: '',
+		friend: null as boolean | null
+	}
 }
 
 const usersReducer = (state = initialState, action: actionTypes): initialStateType => {
@@ -41,6 +45,8 @@ const usersReducer = (state = initialState, action: actionTypes): initialStateTy
 					? [...state.followingProcess, action.userId] //кнопка нажата и записываем айди и блокируем кнопку
 					: state.followingProcess.filter( id => id !== action.userId ) //подписка(отписка) произошла и удаляем элемент массива по айди
 			}
+		case 'sn/users/SET_FILTER':
+			return {...state, filter: action.payload}
 		default:
 			return state;
 		}
@@ -48,20 +54,22 @@ const usersReducer = (state = initialState, action: actionTypes): initialStateTy
 
 //actions creators
 export const actions = {
-	setCurrentUsersPage: (currentPage: number) => ({ type: 'sn/users/SET_CURRENT_USERS_PAGE', currentPage } as const),
 	followSuccess: (userId: number) => ({ type: 'sn/users/FOLLOW', userId } as const),
-	setUsers: (users: Array<userType>) => ({ type: 'sn/users/SET_USERS', users } as const),
 	unfollowSuccess: (userId: number) => ({ type: 'sn/users/UNFOLLOW', userId } as const),
+	setUsers: (users: Array<userType>) => ({ type: 'sn/users/SET_USERS', users } as const),
+	setCurrentUsersPage: (currentPage: number) => ({ type: 'sn/users/SET_CURRENT_USERS_PAGE', currentPage } as const),
+	setFilter: (filter: filterType) => ({ type: 'sn/users/SET_FILTER', payload: filter } as const),
 	setTotalUsersCount: (totalUsersCount: number) => ({ type: 'sn/users/SET_TOTAL_USERS_COUNT', totalUsersCount } as const),
 	toggleIsFetching: (isFetching: boolean) => ({ type: 'sn/users/TOGGLE_IS_FETCHING', isFetching } as const),
 	toggleIsFollowingProcess: (followingProcess: boolean, userId: number) => ({ type: 'sn/users/TOGGLE_IS_FOLLOWING_PROCESS', followingProcess, userId } as const)
 }
 
 //thunks (creators)
-export const getUsers = (currentPage: number, pageSize: number): thunkType => async (dispatch, getState) => {
+export const getUsers = (currentPage: number, pageSize: number, filter: filterType): thunkType => async (dispatch, getState) => {
 	dispatch (actions.toggleIsFetching(true));
 	dispatch(actions.setCurrentUsersPage(currentPage));
-	let data = await usersAPI.getUsers(currentPage, pageSize)
+	dispatch(actions.setFilter(filter));
+	let data = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
 	dispatch (actions.toggleIsFetching(false));
 	dispatch (actions.setUsers(data.items));
 	dispatch (actions.setTotalUsersCount(data.totalCount))
@@ -91,6 +99,7 @@ export const follow = (userId: number): thunkType => async (dispatch) => {
 export default usersReducer;
 
 export type initialStateType = typeof initialState
+export type filterType = typeof initialState.filter
 export type actionTypes = InferActionTypes<typeof actions>
 type dispatchType = Dispatch<actionTypes>
 type thunkType = BaseThunkType<actionTypes>

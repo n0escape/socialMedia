@@ -8,8 +8,8 @@ type getUsersType = {
 }
 
 export const usersAPI = {
-	async getUsers(currentPage = 1, pageSize = 100) {
-		const response = await instanse.get<getUsersType>(`users?page=${currentPage}&count=${pageSize}`);
+	async getUsers(currentPage = 1, pageSize = 100, term: string = '', friend: null | boolean = null) {
+		const response = await instanse.get<getUsersType>(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null ? '' : `&friend=${friend}`));
 		return response.data;
 	},
 	async unfollowUser(userId: number) {
