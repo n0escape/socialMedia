@@ -10,7 +10,8 @@ let initialState = {
 			users: true,
 			settings: true,
 			music: true,
-			news: true
+			news: true,
+			globalChat: true
 		},
 		language: null,
 		themeMode: 'default'

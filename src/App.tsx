@@ -55,9 +55,11 @@ const convertText = (text: string) => {
 }
 
 	// const ProfileContainer = React.lazy( () => import ('./components/Profile/ProfileContainer') )
-const DialogsContainer = React.lazy( () => import ('./components/Dialogs/DialogsContainer') )
+const DialogsContainer = React.lazy( () => import ('./components/Dialogs/DialogsContainer') );
+const GlobalChatPage = React.lazy( () => import ('./pages/Chat/GlobalChatPage') )
 // const ProfileContainerWithSuspense = withSuspense(ProfileContainer)
-const DialogsContainerWithSuspense = withSuspense(DialogsContainer)
+const DialogsContainerWithSuspense = withSuspense(DialogsContainer);
+const GlobalChatPageWithSuspense = withSuspense(GlobalChatPage)
 
 type mapPropsType = ReturnType<typeof mapStateToProps>
 type dispatchPropsType = {
@@ -80,6 +82,7 @@ const App: React.FC<mapPropsType & dispatchPropsType> = React.memo(({initializeA
 		News,
 		Music,
 		SettingsContainer,
+		GlobalChatPageWithSuspense,
 		Login,
 		NotFoundPage
 	}
@@ -168,6 +171,8 @@ const withSettingsRoutes = (settingsComponents: any, components: any) => {
 						return <Route key={key} path={key} element={<components.Music />} />
 					case 'settings':
 						return <Route key={key} path={key} element={<components.SettingsContainer/>}/>
+					case 'globalChat':
+						return <Route key={key} path={key} element={<components.GlobalChatPageWithSuspense/>}/>
 					default:
 						return undefined
 				}

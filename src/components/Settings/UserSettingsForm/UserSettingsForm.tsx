@@ -17,6 +17,7 @@ const UserSettingsForm: React.FC<InjectedFormProps<userSettingsType, PropsType> 
 		{createField("input", "components.users", [], null, "checkbox", "Users")}
 		{createField("input", "components.news", [], null, "checkbox", "News")}
 		{createField("input", "components.music", [], null, "checkbox", "Music")}
+		{createField("input", "components.globalChat", [], null, "checkbox", "Global Chat")}
 		<button>Apply Settings</button>
 	</form>
 );

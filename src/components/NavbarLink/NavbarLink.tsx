@@ -6,7 +6,8 @@ import {
 	TeamOutlined,
 	ToolOutlined,
 	CustomerServiceOutlined,
-	TabletOutlined
+	TabletOutlined,
+	ClusterOutlined
 } from '@ant-design/icons';
 
 let icons: any = {
@@ -16,6 +17,7 @@ let icons: any = {
 	settings: <ToolOutlined />,
 	music:<CustomerServiceOutlined />, 
 	news:<TabletOutlined />,
+	globalChat: <ClusterOutlined />
 }
 
 type linkPropsType = {

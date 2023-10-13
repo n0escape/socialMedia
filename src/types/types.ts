@@ -46,7 +46,8 @@ export type componentsType = {
 	users: boolean,
 	settings: boolean,
 	music: boolean,
-	news: boolean
+	news: boolean,
+	globalChat: boolean
 }
 export type userSettingsType = {
 	components: componentsType,
