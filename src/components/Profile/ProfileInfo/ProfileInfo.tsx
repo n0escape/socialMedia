@@ -7,6 +7,7 @@ import ProfileStatus from "./ProfileStatus";
 import ContactsList from "./Contacts/ContactsList";
 import ProfileDataReduxForm from './ProfileDataForm';
 import { userProfileType } from 'types/types';
+import { Button, Upload } from "antd";
 
 type propsType = {
 	editMode: boolean
@@ -38,12 +39,13 @@ const ProfileInfo: React.FC<propsType> = ({
 	let onSubmit = ( formData: userProfileType ) => {
 		changeProfileData(formData)
 	}
+	//todo: add ant design to all
 	return(
 		<div className={s.description}>
 			<div> 
 				<img src={ userProfile.photos.small || usersPhoto }
 				alt='user avatar'/>
-				{isOwner && <input type={"file"} onChange={onChangePhoto}></input>}
+				<div>{isOwner && <input type={"file"} onChange={onChangePhoto}></input>}</div>
 			</div>
 
 			{

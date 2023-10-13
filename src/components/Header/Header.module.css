@@ -8,6 +8,7 @@
 .loginBlock div{
 	display: flex;
 	align-items: center;
+	text-align: center;
 }
 .loginBlock a{
 	color: black;

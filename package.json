@@ -12,6 +12,7 @@
 		"@types/react-dom": "^18.2.8",
 		"@types/redux-form": "^8.3.6",
 		"@typescript-eslint/parser": "^6.7.3",
+		"antd": "^5.10.0",
 		"axios": "^1.4.0",
 		"formik": "^2.4.5",
 		"react": "^18.2.0",
