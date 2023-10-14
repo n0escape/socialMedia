@@ -1,7 +1,10 @@
-import { Avatar, message } from 'antd'
+import { Avatar } from 'antd'
+import { messageType } from 'api/globalChatAPI'
 import React, { useEffect, useState } from 'react'
-
-const wsChanel = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
+import { useDispatch, useSelector } from 'react-redux'
+import { sendMessage, startMessagesListening, stopMessagesListening } from 'redux/globalChatReducer'
+import { getMessages } from 'redux/globalChatSelectors'
+import { appDispatch } from 'redux/storeRedux'
 
 type GlobalChatPagePropsType = {}
 
@@ -16,6 +19,18 @@ export default GlobalChatPage
 type globalChatPropsType = {}
 
 const GlobalChat: React.FC<globalChatPropsType> = (props) => {
+
+	const dispatch = useDispatch<appDispatch>()
+	useEffect(()=>{
+		console.log('we are in')
+		dispatch(startMessagesListening())
+		return () => {
+			console.log('we are out')
+			dispatch(stopMessagesListening())
+		}
+		// eslint-disable-next-line
+	}, [])
+
 	return <div>
 		<Messages />
 		<AddMessageForm />
@@ -23,16 +38,9 @@ const GlobalChat: React.FC<globalChatPropsType> = (props) => {
 }
 
 type messagesPropsType = {}
-
 const Messages: React.FC<messagesPropsType> = (props) => {
 	
-	const [messages, setMessages] = useState<Array<messageType>>([])
-	useEffect(() => {
-		wsChanel.addEventListener('message', (e: MessageEvent) => {
-			let newMessages = JSON.parse(e.data)
-			setMessages( (prevMessages) => [...prevMessages, ...newMessages] )
-		})
-	}, [])
+	const messages = useSelector(getMessages)
 
 	return <div style={{maxHeight: '400px', overflowY: 'auto'}}>
 		{
@@ -43,12 +51,6 @@ const Messages: React.FC<messagesPropsType> = (props) => {
 
 type messagePropsType = {
 	message: messageType
-}
-type messageType = {
-	message: string
-	photo: string
-	userId: number
-	userName: string
 }
 
 const Message: React.FC<messagePropsType> = ({message}) => {
@@ -66,13 +68,15 @@ const Message: React.FC<messagePropsType> = ({message}) => {
 }
 
 type addMessageFormPropsType = {}
-
 const AddMessageForm: React.FC<addMessageFormPropsType> = (props) => {
 
 	const [message, setMessage] = useState('')
-	const sendMessage = () => {
+
+	const dispatch = useDispatch<appDispatch>()
+
+	const sendMessageHandler = () => {
 		if(!message) return;
-		wsChanel.send(message)
+		dispatch(sendMessage(message))
 		setMessage('')
 	}
 
@@ -81,7 +85,7 @@ const AddMessageForm: React.FC<addMessageFormPropsType> = (props) => {
 			<textarea onChange={ (e) => setMessage(e.currentTarget.value) } value={message}></textarea>
 		</div>
 		<div>
-			<button onClick={sendMessage}>Send</button>
+			<button disabled={false} onClick={sendMessageHandler}>Send</button>
 		</div>
 	</div>
 }

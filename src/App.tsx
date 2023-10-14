@@ -133,10 +133,13 @@ const App: React.FC<mapPropsType & dispatchPropsType> = React.memo(({initializeA
 					<HeaderComponent />
 				</Header>
 				<Content style={{ margin: '0 16px' }}>
-					<Breadcrumb style={{ margin: '16px 0', textAlign: 'center' }}>
-						<Breadcrumb.Item>User</Breadcrumb.Item>
-						<Breadcrumb.Item>Bill</Breadcrumb.Item>
-					</Breadcrumb>
+					<Breadcrumb style={{ margin: '16px 0', textAlign: 'center' }}
+						items={[
+							{title: 'Home',},
+							{title: <a href="">User</a>,},
+							{title: <a href="">Bill</a>,},
+						]}
+					/>
 					<div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
 						{
 							isAuth
