@@ -12,7 +12,7 @@ type propsType = {
 }
 
 const User: React.FC<propsType> = ({user, followingInProcess, unfollow, follow}) => {	
-	return <div key={user.id}>
+	return <div key={user.id} className={s.usersItem}>
 		<span>
 			<div>
 				<NavLink to={'/profile/' + user.id}>
@@ -30,14 +30,14 @@ const User: React.FC<propsType> = ({user, followingInProcess, unfollow, follow})
 			</div>
 		</span>
 		<span>
-			<span>
-				<div> {user.name} </div>
-				<div> {user.status} </div>
+			<span className={s.infoContainer}>
+				<div className={s.userName}> {user.name} </div>
+				<div className={s.userStatus}> {user.status} </div>
 			</span>
-			<span>
+			{/* <span>
 				<div> {"user.location.country"} </div>
 				<div> {"user.location.city"} </div>
-			</span>
+			</span> */}
 		</span>
 	</div> 
 }

@@ -1,0 +1,12 @@
+.usersContainer {
+	display: flex;
+	justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.filterBlock{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	flex-direction: column;
+}

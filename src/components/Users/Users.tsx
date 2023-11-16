@@ -8,6 +8,7 @@ import { getCurrentPage, getFollowingInProcess, getPageSize, getStateUsersResele
 import { appDispatch } from 'redux/storeRedux.ts';
 import { follow, unfollow } from './../../redux/usersReducer';
 import { useSearchParams } from 'react-router-dom';
+import s from './Users.module.css';
 
 type propsType = {
 	
@@ -88,22 +89,27 @@ const Users: React.FC<propsType> = (props) => {
 	}
 
 	return <div>
-		<UsersSearchForm onFilterChanged={onFilterChanged} />
-		<Pagination
-			totalItemsCount={totalUsersCount}
-			pageSize={pageSize}
-			currentPage={currentPage}
-			onPageChanged={onPageChanged}
-		/>
-		{ users.map( user =>
-			<User
-				key={user.id}
-				user={user}
-				followingInProcess={followingInProcess}
-				unfollow={onUnFollow}
-				follow={onFollow}
+		<div className={s.filterBlock}>
+			<UsersSearchForm onFilterChanged={onFilterChanged} />
+			<Pagination
+				totalItemsCount={totalUsersCount}
+				pageSize={pageSize}
+				currentPage={currentPage}
+				onPageChanged={onPageChanged}
 			/>
-		)}
+		</div>
+		<div className={s.usersContainer}>
+			{ users.map( user =>
+				<User
+					key={user.id}
+					user={user}
+					followingInProcess={followingInProcess}
+					unfollow={onUnFollow}
+					follow={onFollow}
+				/>
+			)}
+		</div>
+		
 	</div>
 }
 
